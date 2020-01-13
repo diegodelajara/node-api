@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const router = express_1.Router();
 const movies = [{
         "id": 1,
         "genre": "Adventure|Animation|Children",
@@ -20,9 +19,11 @@ class MovieRoutes {
     }
     routes() {
         // get
-        this.router.get('/', (req, res) => {
-            res.send('movies');
+        this.router.get('/movies', (req, res) => {
+            res.json(movies);
         });
     }
 }
-exports.default = MovieRoutes.router;
+const movieRoutes = new MovieRoutes();
+movieRoutes.routes();
+exports.default = movieRoutes.router;

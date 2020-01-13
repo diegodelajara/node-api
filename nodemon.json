@@ -6,5 +6,5 @@
   "ignore": [
     "src/**/*.spect.ts"
   ],
-  "exec": "ts-node ./build/server.js"
+  "exec": "node ./build/server.js"
 }

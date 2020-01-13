@@ -1,5 +1,4 @@
 import { Router, Request , Response} from 'express'
-const router:Router = Router()
 
 const movies = [{
   "id": 1,
@@ -13,6 +12,9 @@ const movies = [{
   "year": 1985
 }]
 
+
+
+
 class MovieRoutes {
   router: Router
 
@@ -20,19 +22,15 @@ class MovieRoutes {
     this.router = Router()
     this.routes()
   }
+
   routes() {
-  
     // get
-    this.router.get('/', (req: Request, res) => {
-      res.send('movies')
+    this.router.get('/movies', (req: Request, res: Response) => {
+      res.json(movies)
     })
   }
 }
 
-
-
-
-
-
-
-export default MovieRoutes.router
+const movieRoutes = new MovieRoutes()
+movieRoutes.routes()
+export default movieRoutes.router
