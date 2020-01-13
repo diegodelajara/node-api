@@ -1,6 +1,4 @@
-import { Router, Request } from 'express'
-const _ = require('underscore')
-
+import { Router, Request , Response} from 'express'
 const router:Router = Router()
 
 const movies = [{
@@ -15,39 +13,26 @@ const movies = [{
   "year": 1985
 }]
 
-// get
-router.get('/movies', (req: Request, res) => {
-  res.json(movies)
-})
+class MovieRoutes {
+  router: Router
 
-// post
-router.post('/movies', (req, res) => {
-  const { genre, title, year } = req.body
-  if(genre && title && year) {
-    const id = movies.length + 1
-    const newMovie = { id, ...req.body}
-    movies.push(newMovie)
+  constructor() {
+    this.router = Router()
+    this.routes()
   }
-  res.send(movies)
-})
-
-// delete
-router.delete('/movies/:id', (req, res) => {
-  const { id } = req.params
-  // const movie = _.each(movies, (item, i) => {
-  //   if (item.id == id) {
-  //     console.log(id)
-      
-  //   }
-  // })
-  movies.some((movie:any, i) => {
-    if(movie.id == id) {
-      movies.splice(i, 1)
-    }
-  })
-
-  res.send(movies)
-})
+  routes() {
+  
+    // get
+    this.router.get('/', (req: Request, res) => {
+      res.send('movies')
+    })
+  }
+}
 
 
-export default router
+
+
+
+
+
+export default MovieRoutes.router
